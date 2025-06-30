@@ -8,6 +8,7 @@ import com.adjenda.adjenda.models.Contato;
 import jakarta.annotation.PostConstruct;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -19,29 +20,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 @RestController
 public class ContatoController {
     
-    private List<Contato> contatos = new ArrayList<>();
+    private List<Contato> contatos = Arrays.asList( new Contato(1, "João Silva", "João", "123456789", null, null, null, null, null, null),
+                                                    new Contato(2, "Maria Oliveira", "Maria", "987654321", null, null, null, null, null, null),
+                                                    new Contato(3, "Carlos Pereira", "Carlos", "456789123", null, null, null, null, null, null));
 
-    @PostConstruct
-    public void init(){
-        Contato contato1 = new Contato();
-        contato1.setNome("João Silva");
-        contato1.setEmail("joao.silva@email.com");
-        contato1.setTelefone("11999999999");
-
-        Contato contato2 = new Contato();
-        contato2.setNome("Maria Souza");
-        contato2.setEmail("maria.souza@email.com");
-        contato2.setTelefone("11888888888");
-
-        Contato contato3 = new Contato();
-        contato3.setNome("Carlos Pereira");
-        contato3.setEmail("carlos.pereira@email.com");
-        contato3.setTelefone("11777777777");
-
-        contatos.add(contato1);
-        contatos.add(contato2);
-        contatos.add(contato3);
-    }
     
     @GetMapping("contatos/{id}")
     public ResponseEntity<Contato> getContato(@PathVariable int id) {
@@ -59,6 +41,3 @@ public class ContatoController {
     }
 
 }
-
-
-

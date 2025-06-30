@@ -12,6 +12,25 @@ public class Contato {
     private Boolean bloqueado;
     private Boolean favorito;
     
+
+    public Contato(int id, String nome, String apelido, String telefone, String email, String categoria, String endereco, String data_de_nascimento, Boolean bloqueado, Boolean favorito) {
+        this.id = id;
+        this.nome = nome;
+        this.apelido = apelido;
+        this.telefone = telefone;
+        this.email = email;
+        this.categoria = categoria;
+        this.endereco = endereco;
+        this.data_de_nascimento = data_de_nascimento;
+        this.bloqueado = bloqueado;
+        this.favorito = favorito;
+    }
+
+    public Contato() {
+    
+    }
+
+
     public int getId() {
         return id;
     }
