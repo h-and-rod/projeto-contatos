@@ -45,13 +45,12 @@ public class ContatoController {
     
     @GetMapping("contatos/{id}")
     public ResponseEntity<Contato> getContato(@PathVariable int id) {
-        
-        if (id <= contatos.size()) {
-            return ResponseEntity.ok(contatos.get(id - 1)); //O ResponseEntity serve para retornar um erro HTTP na parte do cliente, não mais no servidor
-        }else{
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Contact not found");     }
-        
-
+ 
+        Contato contato = contatos.stream()
+                                  .filter(c -> c.getId() == id)
+                                  .findFirst()
+                                  .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Contact not found"));
+        return ResponseEntity.ok(contato);
     }
 
     @GetMapping("contatos")
