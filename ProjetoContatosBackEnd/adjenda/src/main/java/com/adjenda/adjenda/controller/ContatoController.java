@@ -1,15 +1,21 @@
 package com.adjenda.adjenda.controller;
 
 import org.springframework.web.bind.annotation.RestController;
+
+import com.adjenda.adjenda.models.Contato;
+
 import org.springframework.web.bind.annotation.GetMapping;
 
 
 @RestController
-public class ContactsController {
+public class ContatoController {
     
     @GetMapping("contacts")
-    public String getContacts() {
-        return new String("Hello");
+    public Contato getContatos() {
+        
+        Contato contato = new Contato();
+
+        return contato;
     }
     
 
