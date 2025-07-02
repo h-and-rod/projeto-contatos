@@ -14,5 +14,4 @@ export class CategoriaService {
     return this.http.get<Categoria[]>('http://localhost:8080/categorias');
   }
 
-
 }

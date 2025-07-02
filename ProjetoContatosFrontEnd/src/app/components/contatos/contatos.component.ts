@@ -15,6 +15,7 @@ export class ContatosComponent implements OnInit {
   
   categorias: Categoria [] = [];
   contatos: Contato[] = [];
+  contato: Contato = {} as Contato;
 
   constructor(private categoriaService: CategoriaService, private contatoService: ContatoService) { }
 
@@ -32,4 +33,17 @@ export class ContatosComponent implements OnInit {
       }
     );
   }
+
+  saveContato() {
+    
+    this.contatoService.saveContato(this.contato).subscribe(
+      {
+        next: dado => {
+          this.contatos.push(dado);
+          this.contato = {} as Contato;
+        }
+      }
+    )
+  }
+
 }

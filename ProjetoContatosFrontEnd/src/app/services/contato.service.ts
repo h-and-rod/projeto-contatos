@@ -15,4 +15,8 @@ export class ContatoService {
     return this.http.get<Contato[]>('http://localhost:8080/contatos');
   }
   
+  saveContato(contato: Contato){
+    return this.http.post<Contato>('http://localhost:8080/contatos', contato);
+  }
+
 }
