@@ -6,14 +6,14 @@ public class Contato {
     private String apelido;
     private String telefone;
     private String email;
-    private String categoria;
+    private Categoria categoria;
     private String endereco;
     private String data_de_nascimento;
     private Boolean bloqueado;
     private Boolean favorito;
     
 
-    public Contato(int id, String nome, String apelido, String telefone, String email, String categoria, String endereco, String data_de_nascimento, Boolean bloqueado, Boolean favorito) {
+    public Contato(int id, String nome, String apelido, String telefone, String email, Categoria categoria, String endereco, String data_de_nascimento, Boolean bloqueado, Boolean favorito) {
         this.id = id;
         this.nome = nome;
         this.apelido = apelido;
@@ -61,10 +61,10 @@ public class Contato {
     public void setEmail(String email) {
         this.email = email;
     }
-    public String getCategoria() {
+    public Categoria getCategoria() {
         return categoria;
     }
-    public void setCategoria(String categoria) {
+    public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
     public String getEndereco() {
