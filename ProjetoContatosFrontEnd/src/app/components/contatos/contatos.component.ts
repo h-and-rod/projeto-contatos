@@ -20,18 +20,30 @@ export class ContatosComponent implements OnInit {
   constructor(private categoriaService: CategoriaService, private contatoService: ContatoService) { }
 
   ngOnInit(): void {
+   
+    this.loadContatos();
+    this.loadCategorias();
+    
+  }
+  
+  loadContatos() {
+   
+    this.contatoService.getContatos().subscribe(
+      {
+        next: dados => {this.contatos = dados;}
+      }
+    );  
 
+  }
+
+  loadCategorias() {   
+    
     this.categoriaService.getCategorias().subscribe(
       {
         next: dado => { this.categorias = dado;}
       }
     );
 
-    this.contatoService.getContatos().subscribe(
-      {
-        next: dados => {this.contatos = dados;}
-      }
-    );
   }
 
   saveContato() {
@@ -42,8 +54,7 @@ export class ContatosComponent implements OnInit {
           this.contatos.push(dado);
           this.contato = {} as Contato;
         }
-      }
-    )
+      })
   }
 
 }
