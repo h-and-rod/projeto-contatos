@@ -1,6 +1,8 @@
 package com.adjenda.adjenda.models;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
@@ -10,6 +12,7 @@ import jakarta.persistence.Table;
 public class Contato {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String nome;
     private String apelido;
@@ -18,7 +21,7 @@ public class Contato {
     @ManyToOne
     private Categoria categoria;
     private String endereco;
-    private String data_de_nascimento;
+    private String data_nascimento;
     private Boolean bloqueado;
     private Boolean favorito;
     
@@ -31,7 +34,7 @@ public class Contato {
         this.email = email;
         this.categoria = categoria;
         this.endereco = endereco;
-        this.data_de_nascimento = data_de_nascimento;
+        this.data_nascimento = data_de_nascimento;
         this.bloqueado = bloqueado;
         this.favorito = favorito;
     }
@@ -84,10 +87,10 @@ public class Contato {
         this.endereco = endereco;
     }
     public String getData_de_nascimento() {
-        return data_de_nascimento;
+        return data_nascimento;
     }
     public void setData_de_nascimento(String data_de_nascimento) {
-        this.data_de_nascimento = data_de_nascimento;
+        this.data_nascimento = data_de_nascimento;
     }
     public Boolean getBloqueado() {
         return bloqueado;

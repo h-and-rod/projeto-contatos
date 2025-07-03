@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.adjenda.adjenda.models.Contato;
+import com.adjenda.adjenda.repositories.ContatoRepository;
 
 import jakarta.annotation.PostConstruct;
 
@@ -11,19 +12,22 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 
 @RestController
+@CrossOrigin
 public class ContatoController {
     
-    private List<Contato> contatos = Arrays.asList( new Contato(1, "João Silva", "João", "123456789", null, null, null, null, null, null),
-                                                    new Contato(2, "Maria Oliveira", "Maria", "987654321", null, null, null, null, null, null),
-                                                    new Contato(3, "Carlos Pereira", "Carlos", "456789123", null, null, null, null, null, null));
+    private List<Contato> contatos = Arrays.asList();
 
+    @Autowired
+    private ContatoRepository contatoRepository;
     
     @GetMapping("contatos/{id}")
     public ResponseEntity<Contato> getContato(@PathVariable int id) {
@@ -37,7 +41,7 @@ public class ContatoController {
 
     @GetMapping("contatos")
     public List<Contato> getAllContatos() {
-        return contatos;
+        return contatoRepository.findAll();
     }
 
 }
