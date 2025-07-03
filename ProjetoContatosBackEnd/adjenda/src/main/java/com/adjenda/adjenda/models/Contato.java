@@ -1,11 +1,21 @@
 package com.adjenda.adjenda.models;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "TBL_CONTATO")
 public class Contato {
+
+    @Id
     private int id;
     private String nome;
     private String apelido;
     private String telefone;
     private String email;
+    @ManyToOne
     private Categoria categoria;
     private String endereco;
     private String data_de_nascimento;
