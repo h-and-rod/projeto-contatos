@@ -1,7 +1,14 @@
 package com.adjenda.adjenda.models;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "TBL_CATEGORIA")
 public class Categoria {
     
+    @Id
     private int id;
     private String nome;
 
