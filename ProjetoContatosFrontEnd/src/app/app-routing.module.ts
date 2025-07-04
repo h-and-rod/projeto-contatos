@@ -13,6 +13,8 @@ const routes: Routes = [
   {path: 'cadastrar', component: CadastrarComponent },
   {path: 'pesquisar', component: PesquisarComponent },
   {path: 'favoritos', component: FavoritosComponent },
+  {path: '', redirectTo: '/home', pathMatch: 'full' },
+  {path: '**', redirectTo: '/home', pathMatch: 'full' },
 ];
 
 @NgModule({
