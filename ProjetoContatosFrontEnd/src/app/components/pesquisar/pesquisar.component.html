@@ -1,1 +1,57 @@
-<p>pesquisar works!</p>
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-10">
+      <div class="card shadow">
+        <div class="card-header bg-success text-white text-center">
+          <h3>Pesquisar Contatos</h3>
+        </div>
+        <div class="card-body">
+          <form class="mb-4">
+            <div class="row g-3 align-items-center">
+              <div class="col-md-10">
+                <input type="text" class="form-control" placeholder="Digite o nome, e-mail ou telefone para pesquisar" />
+              </div>
+              <div class="col-md-2 d-grid">
+                <button type="submit" class="btn btn-success">Pesquisar</button>
+              </div>
+            </div>
+          </form>
+          <div *ngIf="contatos && contatos.length > 0; else nenhumResultado">
+            <table class="table table-bordered table-hover">
+              <thead class="table-success">
+                <tr>
+                  <th>Nome</th>
+                  <th>E-mail</th>
+                  <th>Telefone</th>
+                  <th>Categoria</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let contato of contatos">
+                  <td>{{ contato.nome }}</td>
+                  <td>{{ contato.email }}</td>
+                  <td>{{ contato.telefone }}</td>
+                  <td>{{ contato.categoria }}</td>
+                  <td>
+                    <button class="btn btn-outline-success btn-sm me-2" title="Favoritar">
+                      <i class="bi bi-star"></i>
+                    </button>
+                    <button class="btn btn-outline-danger btn-sm" title="Excluir">
+                      <i class="bi bi-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <ng-template #nenhumResultado>
+            <div class="alert alert-warning text-center mt-4">
+              Nenhum contato encontrado.
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

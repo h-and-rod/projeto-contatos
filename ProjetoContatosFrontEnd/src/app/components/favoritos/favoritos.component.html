@@ -1,1 +1,45 @@
-<p>favoritos works!</p>
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-10">
+      <div class="card shadow">
+        <div class="card-header bg-success text-white text-center">
+          <h3>Contatos Favoritos</h3>
+        </div>
+        <div class="card-body">
+          <div *ngIf="favoritos && favoritos.length > 0; else nenhumFavorito">
+            <table class="table table-bordered table-hover">
+              <thead class="table-success">
+                <tr>
+                  <th>Nome</th>
+                  <th>E-mail</th>
+                  <th>Telefone</th>
+                  <th>Categoria</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let contato of favoritos">
+                  <td>{{ contato.nome }}</td>
+                  <td>{{ contato.email }}</td>
+                  <td>{{ contato.telefone }}</td>
+                  <td>{{ contato.categoria }}</td>
+                  <td>
+                    <button class="btn btn-outline-warning btn-sm me-2" title="Remover dos Favoritos">
+                      <i class="bi bi-star-fill"></i>
+                    </button>
+                    <button class="btn btn-outline-danger btn-sm" title="Excluir">
+                      <i class="bi bi-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <ng-template #nenhumFavorito>
+            <div class="alert alert-warning text-center mt-4">
+              Nenhum contato favorito encontrado.
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
