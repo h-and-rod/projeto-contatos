@@ -8,6 +8,9 @@ import { Contato } from '../interfaces/Contato';
   providedIn: 'root'
 })
 export class ContatoService {
+  pesquisarContatos(filtro: any) {
+    throw new Error('Method not implemented.');
+  }
 
   constructor(private http: HttpClient) { }
 
