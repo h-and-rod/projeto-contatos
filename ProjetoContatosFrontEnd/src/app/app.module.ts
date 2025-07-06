@@ -13,6 +13,7 @@ import { CadastrarComponent } from './components/cadastrar/cadastrar.component';
 import { PesquisarComponent } from './components/pesquisar/pesquisar.component';
 import { FavoritosComponent } from './components/favoritos/favoritos.component';
 import { HomeComponent } from './components/home/home.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { HomeComponent } from './components/home/home.component';
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
