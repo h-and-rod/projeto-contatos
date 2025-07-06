@@ -16,6 +16,8 @@ export class ContatosComponent implements OnInit {
   categorias: Categoria [] = [];
   contatos: Contato[] = [];
   contato: Contato = {} as Contato;
+  mostrarModalEditar: boolean = false;
+  contatoEditando: any = {};
 
   constructor(private categoriaService: CategoriaService, private contatoService: ContatoService) { }
 
@@ -64,5 +66,24 @@ export class ContatosComponent implements OnInit {
         next: () => this.loadContatos()
     });
   }
+  }
+
+  abrirPopupEditar(contato: any) {
+    this.contatoEditando = { ...contato };
+    this.mostrarModalEditar = true;
+  }
+
+  fecharModalEditar() {
+    this.mostrarModalEditar = false;
+  }
+
+  salvarEdicaoContato() {
+    this.contatoService.updateContato(this.contatoEditando).subscribe({
+      next: (contatoAtualizado) => {
+        const idx = this.contatos.findIndex(c => c.id === contatoAtualizado.id);
+        if (idx > -1) this.contatos[idx] = contatoAtualizado;
+        this.fecharModalEditar();
+      }
+    });
   }
 }

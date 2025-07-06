@@ -26,4 +26,7 @@ export class ContatoService {
   return this.http.delete(`http://localhost:8080/contatos/${id}`);
   }
 
+  updateContato(contato: Contato) {
+    return this.http.put<Contato>(`http://localhost:8080/contatos/${contato.id}`, contato);
+  }
 }
