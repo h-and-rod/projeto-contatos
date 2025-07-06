@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -57,4 +58,25 @@ public class ContatoController {
         contatoRepository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Contato> updateContato(@PathVariable int id, @RequestBody Contato contatoAtualizado) {
+        return contatoRepository.findById(id)
+            .map(contato -> {
+                contato.setNome(contatoAtualizado.getNome());
+                contato.setApelido(contatoAtualizado.getApelido());
+                contato.setTelefone(contatoAtualizado.getTelefone());
+                contato.setEmail(contatoAtualizado.getEmail());
+                contato.setCategoria(contatoAtualizado.getCategoria());
+                contato.setEndereco(contatoAtualizado.getEndereco());
+                contato.setData_de_nascimento(contatoAtualizado.getData_de_nascimento());
+                contato.setBloqueado(contatoAtualizado.getBloqueado());
+                contato.setFavorito(contatoAtualizado.getFavorito());
+                Contato atualizado = contatoRepository.save(contato);
+                return ResponseEntity.ok(atualizado);
+            })
+            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Contact not found"));
+    }
+
+    
 }
