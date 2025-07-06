@@ -18,30 +18,33 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @RestController
 @CrossOrigin
+@RequestMapping("contatos")
 public class ContatoController {
-    
-    private List<Contato> contatos = Arrays.asList();
 
     @Autowired
     private ContatoRepository contatoRepository;
-    
-    @GetMapping("contatos/{id}")
+
+    @GetMapping("/{id}")
     public ResponseEntity<Contato> getContato(@PathVariable int id) {
- 
-        Contato contato = contatos.stream()
-                                  .filter(c -> c.getId() == id)
-                                  .findFirst()
-                                  .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Contact not found"));
-        return ResponseEntity.ok(contato);
+        return contatoRepository.findById(id)
+            .map(ResponseEntity::ok)
+            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Contact not found"));
     }
 
-    @GetMapping("contatos")
+    @GetMapping
     public List<Contato> getAllContatos() {
         return contatoRepository.findAll();
     }
 
+    @PostMapping
+    public Contato createContato(@RequestBody Contato contato) {
+        return contatoRepository.save(contato);
+    }
 }
