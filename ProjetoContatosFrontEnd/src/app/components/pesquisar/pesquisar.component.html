@@ -6,33 +6,78 @@
           <h3>Pesquisar Contatos</h3>
         </div>
         <div class="card-body">
-          <form class="mb-4">
+          <form class="mb-4" (ngSubmit)="pesquisar()">
             <div class="row g-3 align-items-center">
-              <div class="col-md-10">
-                <input type="text" class="form-control" placeholder="Digite o nome, e-mail ou telefone para pesquisar" />
+              <div class="col-md-2">
+                <input type="text" class="form-control" placeholder="Nome" [(ngModel)]="filtro.nome" name="nome">
               </div>
-              <div class="col-md-2 d-grid">
+              <div class="col-md-2">
+                <input type="text" class="form-control" placeholder="Apelido" [(ngModel)]="filtro.apelido" name="apelido">
+              </div>
+              <div class="col-md-2">
+                <input type="text" class="form-control" placeholder="Telefone" [(ngModel)]="filtro.telefone" name="telefone">
+              </div>
+              <div class="col-md-2">
+                <input type="email" class="form-control" placeholder="E-mail" [(ngModel)]="filtro.email" name="email">
+              </div>
+              <div class="col-md-2">
+                <select class="form-select" [(ngModel)]="filtro.categoria" name="categoria">
+                  <option value="" disabled>Categoria</option>
+                  <option *ngFor="let c of categorias" [value]="c.nome">{{ c.nome }}</option>
+                </select>
+              </div>
+              <div class="col-md-1">
+                <select class="form-select" [(ngModel)]="filtro.favorito" name="favorito">
+                  <option value="">
+                    &#9734;
+                  </option>
+                  <option [value]="true">Sim</option>
+                  <option [value]="false">Não</option>
+                </select>
+              </div>
+              <div class="col-md-1">
+                <select class="form-select" [(ngModel)]="filtro.bloqueado" name="bloqueado">
+                  <option value="">
+                    &#10006;
+                  </option>
+                  <option [value]="true">Sim</option>
+                  <option [value]="false">Não</option>
+                </select>
+              </div>
+              <div class="col-md-12 mt-3 d-grid">
                 <button type="submit" class="btn btn-success">Pesquisar</button>
               </div>
             </div>
           </form>
-          <div *ngIf="contatos && contatos.length > 0; else nenhumResultado">
+          <div *ngIf="contatosFiltrados && contatosFiltrados.length > 0; else nenhumResultado">
             <table class="table table-bordered table-hover">
               <thead class="table-success">
                 <tr>
                   <th>Nome</th>
+                  <th>Apelido</th>
                   <th>E-mail</th>
                   <th>Telefone</th>
                   <th>Categoria</th>
+                  <th>Favorito</th>
+                  <th>Bloqueado</th>
                   <th>Ações</th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let contato of contatos">
+                <tr *ngFor="let contato of contatosFiltrados">
                   <td>{{ contato.nome }}</td>
+                  <td>{{ contato.apelido }}</td>
                   <td>{{ contato.email }}</td>
                   <td>{{ contato.telefone }}</td>
-                  <td>{{ contato.categoria }}</td>
+                  <td>{{ contato.categoria.nome }}</td>
+                  <td>
+                    <span *ngIf="contato.favorito" class="text-success fw-bold">Sim</span>
+                    <span *ngIf="!contato.favorito">Não</span>
+                  </td>
+                  <td>
+                    <span *ngIf="contato.bloqueado" class="text-danger fw-bold">Sim</span>
+                    <span *ngIf="!contato.bloqueado">Não</span>
+                  </td>
                   <td>
                     <button class="btn btn-outline-success btn-sm me-2" title="Favoritar">
                       <i class="bi bi-star"></i>

@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Categoria } from '../../interfaces/Categoria';
+import { CategoriaService } from '../../services/categoria.service';
+import { ContatoService } from '../../services/contato.service';
 import { Contato } from '../../interfaces/Contato';
 
 @Component({
@@ -7,7 +10,61 @@ import { Contato } from '../../interfaces/Contato';
   templateUrl: './pesquisar.component.html',
   styleUrls: ['./pesquisar.component.css']
 })
-export class PesquisarComponent {
+export class PesquisarComponent implements OnInit {
+  categorias: Categoria [] = [];
   contatos: Contato[] = [];
+  contatosFiltrados: Contato[] = [];
+  contato: Contato = {} as Contato;
+  filtro: any = { categoria: '', favorito: '', bloqueado: '' };
 
+  constructor(private categoriaService: CategoriaService, private contatoService: ContatoService) { }
+
+  ngOnInit(): void {
+    this.loadContatos();
+    this.loadCategorias();
+  }
+
+  loadContatos() {
+    this.contatoService.getContatos().subscribe({
+      next: dados => {
+        this.contatos = dados;
+        this.contatosFiltrados = dados;
+      }
+    });
+  }
+
+  loadCategorias() {   
+    
+    this.categoriaService.getCategorias().subscribe(
+      {
+        next: dado => { this.categorias = dado;}
+      }
+    );
+
+  }
+
+  saveContato() {
+    
+    this.contatoService.saveContato(this.contato).subscribe(
+      {
+        next: dado => {
+          this.contatos.push(dado);
+          this.contato = {} as Contato;
+        }
+      })
+  }
+
+  pesquisar() {
+    this.contatosFiltrados = this.contatos.filter(contato => {
+      const nomeMatch = !this.filtro.nome || contato.nome?.toLowerCase().includes(this.filtro.nome.toLowerCase());
+      const apelidoMatch = !this.filtro.apelido || contato.apelido?.toLowerCase().includes(this.filtro.apelido.toLowerCase());
+      const emailMatch = !this.filtro.email || contato.email?.toLowerCase().includes(this.filtro.email.toLowerCase());
+      const telefoneMatch = !this.filtro.telefone || contato.telefone?.includes(this.filtro.telefone);
+      const categoriaMatch = !this.filtro.categoria || contato.categoria?.nome === this.filtro.categoria;
+      const favoritoMatch = this.filtro.favorito === undefined || this.filtro.favorito === '' || contato.favorito === (this.filtro.favorito === 'true' || this.filtro.favorito === true);
+      const bloqueadoMatch = this.filtro.bloqueado === undefined || this.filtro.bloqueado === '' || contato.bloqueado === (this.filtro.bloqueado === 'true' || this.filtro.bloqueado === true);
+
+      return nomeMatch && apelidoMatch && emailMatch && telefoneMatch && categoriaMatch && favoritoMatch && bloqueadoMatch;
+    });
+  }
 }
