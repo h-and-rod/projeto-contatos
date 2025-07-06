@@ -22,4 +22,8 @@ export class ContatoService {
     return this.http.post<Contato>('http://localhost:8080/contatos', contato);
   }
 
+  deleteContato(id: number) {
+  return this.http.delete(`http://localhost:8080/contatos/${id}`);
+  }
+
 }

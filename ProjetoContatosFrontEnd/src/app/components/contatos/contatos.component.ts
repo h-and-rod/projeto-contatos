@@ -57,4 +57,12 @@ export class ContatosComponent implements OnInit {
       })
   }
 
+  deleteContato(contatos: Contato) {
+    const confirmar = confirm(`Tem certeza que deseja excluir o contato "${contatos.nome}"?`);
+    if (confirmar) {
+      this.contatoService.deleteContato(contatos.id).subscribe({
+        next: () => this.loadContatos()
+    });
+  }
+  }
 }
