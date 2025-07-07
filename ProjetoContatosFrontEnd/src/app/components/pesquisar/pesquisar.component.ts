@@ -16,7 +16,9 @@ export class PesquisarComponent implements OnInit {
   contatosFiltrados: Contato[] = [];
   contato: Contato = {} as Contato;
   filtro: any = { categoria: '', favorito: '', bloqueado: '' };
-
+  mostrarModalEditar: boolean = false;
+  contatoEditando: any = {};
+  
   constructor(private categoriaService: CategoriaService, private contatoService: ContatoService) { }
 
   ngOnInit(): void {
@@ -67,4 +69,38 @@ export class PesquisarComponent implements OnInit {
       return nomeMatch && apelidoMatch && emailMatch && telefoneMatch && categoriaMatch && favoritoMatch && bloqueadoMatch;
     });
   }
+
+  
+  deleteContato(contatos: Contato) {
+    const confirmar = confirm(`Tem certeza que deseja excluir o contato "${contatos.nome}"?`);
+    if (confirmar) {
+      this.contatoService.deleteContato(contatos.id).subscribe({
+        next: () => this.loadContatos()
+    });
+  }
+  }
+
+  abrirPopupEditar(contato: any) {
+    this.contatoEditando = { ...contato };
+    if (this.categorias && contato.categoria) {
+      const categoriaEncontrada = this.categorias.find(c => c.id === contato.categoria.id);
+      this.contatoEditando.categoria = categoriaEncontrada || null;
+    }
+    this.mostrarModalEditar = true;
+  }
+
+  fecharModalEditar() {
+    this.mostrarModalEditar = false;
+  }
+
+  salvarEdicaoContato() {
+    this.contatoService.updateContato(this.contatoEditando).subscribe({
+      next: (contatoAtualizado) => {
+        const idx = this.contatos.findIndex(c => c.id === contatoAtualizado.id);
+        if (idx > -1) this.contatos[idx] = contatoAtualizado;
+        this.fecharModalEditar();
+      }
+    });
+  }
+
 }
