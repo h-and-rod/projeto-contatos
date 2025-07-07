@@ -7,37 +7,39 @@
         </div>
         <div class="card-body">
           <div *ngIf="bloqueados && bloqueados.length > 0; else nenhumBloqueado">
-            <table class="table table-bordered table-hover">
-              <thead class="table-success">
-                <tr>
-                  <th>Nome</th>
-                  <th>E-mail</th>
-                  <th>Telefone</th>
-                  <th>Categoria</th>
-                  <th>Ações</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let contato of bloqueados">
-                  <td>{{ contato.nome }}</td>
-                  <td>{{ contato.email }}</td>
-                  <td>{{ contato.telefone }}</td>
-                  <td>{{ contato.categoria.nome }}</td>
-                  <td>
-                    <button class="btn btn-outline-success btn-sm me-2" title="Editar" (click)="abrirPopupEditar(contato)">
-                      <i class="bi bi-pencil"></i>
-                    </button>
-                    <button class="btn btn-outline-warning btn-sm" title="Desbloquear" (click)="desbloquearContato(contato)">
-                      <i class="bi bi-unlock"></i>
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <ng-template #nenhumBloqueado>
-            <div class="alert alert-warning text-center mt-4">
-              Nenhum contato bloqueado encontrado.
+            <div class="table-responsive">
+              <table class="table table-bordered table-hover">
+                <thead class="table-success">
+                  <tr>
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                    <th>Telefone</th>
+                    <th>Categoria</th>
+                    <th>Ações</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let contato of bloqueados">
+                    <td>{{ contato.nome }}</td>
+                    <td>{{ contato.email }}</td>
+                    <td>{{ contato.telefone }}</td>
+                    <td>{{ contato.categoria.nome }}</td>
+                    <td>
+                      <button class="btn btn-outline-success btn-sm me-2" title="Editar" (click)="abrirPopupEditar(contato)">
+                        <i class="bi bi-pencil"></i>
+                      </button>
+                      <button class="btn btn-outline-warning btn-sm" title="Desbloquear" (click)="desbloquearContato(contato)">
+                        <i class="bi bi-unlock"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            </div>
+            <ng-template #nenhumBloqueado>
+              <div class="alert alert-warning text-center mt-4">
+                Nenhum contato bloqueado encontrado.
             </div>
           </ng-template>
         </div>

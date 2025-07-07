@@ -7,11 +7,12 @@
         </div>
         <div class="card-body">
           <div *ngIf="favoritos && favoritos.length > 0; else nenhumFavorito">
-            <table class="table table-bordered table-hover">
-              <thead class="table-success">
-                <tr>
-                  <th>Nome</th>
-                  <th>E-mail</th>
+            <div class="table-responsive">
+              <table class="table table-bordered table-hover">
+                <thead class="table-success">
+                  <tr>
+                    <th>Nome</th>
+                    <th>E-mail</th>
                   <th>Telefone</th>
                   <th>Categoria</th>
                   <th>Ações</th>
@@ -34,6 +35,7 @@
                 </tr>
               </tbody>
             </table>
+          </div>
           </div>
           <ng-template #nenhumFavorito>
             <div class="alert alert-warning text-center mt-4">

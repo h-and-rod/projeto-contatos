@@ -7,34 +7,36 @@
         </div>
         <div class="card-body">
           <div *ngIf="contatos && contatos.length > 0; else nenhumContato">
-            <table class="table table-bordered table-hover">
-              <thead class="table-success">
-                <tr>
-                  <th>Nome</th>
-                  <th>E-mail</th>
-                  <th>Telefone</th>
-                  <th>Categoria</th>
-                  <th>Ações</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let contato of contatos">
-                  <td>{{ contato.nome }}</td>
-                  <td>{{ contato.email }}</td>
-                    <td>{{ contato.telefone }}</td>
-                  <td>{{ contato.categoria.nome }}</td>
-                  <td>
-                    <button class="btn btn-outline-success btn-sm me-2" title="Editar" (click)="abrirPopupEditar(contato)">
-                      <i class="bi bi-pencil"></i>
-                    </button>
-                    <button class="btn btn-outline-danger btn-sm" title="Excluir" (click)="deleteContato(contato)">
-                      <i class="bi bi-trash"></i>
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                  <thead class="table-success">
+                    <tr>
+                      <th>Nome</th>
+                      <th>E-mail</th>
+                      <th>Telefone</th>
+                      <th>Categoria</th>
+                      <th>Ações</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let contato of contatos">
+                      <td>{{ contato.nome }}</td>
+                      <td>{{ contato.email }}</td>
+                      <td>{{ contato.telefone }}</td>
+                      <td>{{ contato.categoria.nome }}</td>
+                      <td>
+                        <button class="btn btn-outline-success btn-sm me-2" title="Editar" (click)="abrirPopupEditar(contato)">
+                          <i class="bi bi-pencil"></i>
+                        </button>
+                        <button class="btn btn-outline-danger btn-sm" title="Excluir" (click)="deleteContato(contato)">
+                          <i class="bi bi-trash"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
             <div class="mb-4 text-center">
             <a routerLink="/cadastrar" class="btn btn-success">
               <i class="bi bi-person-plus"></i> + Adicionar Novo Contato
