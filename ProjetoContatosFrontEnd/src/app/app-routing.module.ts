@@ -5,6 +5,7 @@ import { HomeComponent } from './components/home/home.component';
 import { CadastrarComponent } from './components/cadastrar/cadastrar.component';
 import { PesquisarComponent } from './components/pesquisar/pesquisar.component';
 import { FavoritosComponent } from './components/favoritos/favoritos.component';
+import { BloqueadosComponent } from './components/bloqueados/bloqueados.component';
 
 const routes: Routes = [
   
@@ -13,6 +14,7 @@ const routes: Routes = [
   {path: 'cadastrar', component: CadastrarComponent },
   {path: 'pesquisar', component: PesquisarComponent },
   {path: 'favoritos', component: FavoritosComponent },
+  {path: 'bloqueados', component: BloqueadosComponent },
   {path: '', redirectTo: '/home', pathMatch: 'full' },
   {path: '**', redirectTo: '/home', pathMatch: 'full' },
 ];

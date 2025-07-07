@@ -14,6 +14,7 @@ import { PesquisarComponent } from './components/pesquisar/pesquisar.component';
 import { FavoritosComponent } from './components/favoritos/favoritos.component';
 import { HomeComponent } from './components/home/home.component';
 import { FormsModule } from '@angular/forms';
+import { BloqueadosComponent } from './components/bloqueados/bloqueados.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { FormsModule } from '@angular/forms';
     CadastrarComponent,
     PesquisarComponent,
     FavoritosComponent,
-    HomeComponent
+    HomeComponent,
+    BloqueadosComponent
   ],
   imports: [
     BrowserModule,
