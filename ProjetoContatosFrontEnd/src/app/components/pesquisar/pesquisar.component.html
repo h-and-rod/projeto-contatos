@@ -50,45 +50,47 @@
             </div>
           </form>
           <div *ngIf="contatosFiltrados && contatosFiltrados.length > 0; else nenhumResultado">
-            <table class="table table-bordered table-hover">
-              <thead class="table-success">
-                <tr>
-                  <th>Nome</th>
-                  <th>Apelido</th>
-                  <th>E-mail</th>
-                  <th>Telefone</th>
-                  <th>Categoria</th>
-                  <th>Favorito</th>
-                  <th>Bloqueado</th>
-                  <th>Ações</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let contato of contatosFiltrados">
-                  <td>{{ contato.nome }}</td>
-                  <td>{{ contato.apelido }}</td>
-                  <td>{{ contato.email }}</td>
-                  <td>{{ contato.telefone }}</td>
-                  <td>{{ contato.categoria.nome }}</td>
-                  <td>
-                    <span *ngIf="contato.favorito" class="text-success fw-bold">Favoritado</span>
-                    <span *ngIf="!contato.favorito"></span>
-                  </td>
-                  <td>
-                    <span *ngIf="contato.bloqueado" class="text-danger fw-bold">Bloqueado</span>
-                    <span *ngIf="!contato.bloqueado"></span>
-                  </td>
-                  <td>
-                    <button class="btn btn-outline-success btn-sm me-2" title="Editar" (click)="abrirPopupEditar(contato)">
-                      <i class="bi bi-star"></i>
-                    </button>
-                    <button class="btn btn-outline-danger btn-sm" title="Excluir" (click)="deleteContato(contato)">
-                      <i class="bi bi-trash"></i>
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+            <div class="table-responsive">
+              <table class="table table-bordered table-hover">
+                <thead class="table-success">
+                  <tr>
+                    <th>Nome</th>
+                    <th>Apelido</th>
+                    <th>E-mail</th>
+                    <th>Telefone</th>
+                    <th>Categoria</th>
+                    <th>Favorito</th>
+                    <th>Bloqueado</th>
+                    <th>Ações</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let contato of contatosFiltrados">
+                    <td>{{ contato.nome }}</td>
+                    <td>{{ contato.apelido }}</td>
+                    <td>{{ contato.email }}</td>
+                    <td>{{ contato.telefone }}</td>
+                    <td>{{ contato.categoria.nome }}</td>
+                    <td>
+                      <span *ngIf="contato.favorito" class="text-success fw-bold">Favoritado</span>
+                      <span *ngIf="!contato.favorito"></span>
+                    </td>
+                    <td>
+                      <span *ngIf="contato.bloqueado" class="text-danger fw-bold">Bloqueado</span>
+                      <span *ngIf="!contato.bloqueado"></span>
+                    </td>
+                    <td>
+                      <button class="btn btn-outline-success btn-sm me-2" title="Editar" (click)="abrirPopupEditar(contato)">
+                        <i class="bi bi-star"></i>
+                      </button>
+                      <button class="btn btn-outline-danger btn-sm" title="Excluir" (click)="deleteContato(contato)">
+                        <i class="bi bi-trash"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
           <ng-template #nenhumResultado>
             <div class="alert alert-warning text-center mt-4">
