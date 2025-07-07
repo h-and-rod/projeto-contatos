@@ -44,4 +44,13 @@ export class FavoritosComponent {
     );
 
   }
+
+  desfavoritarContato(contato: Contato) {
+    contato.favorito = false;
+    this.contatoService.updateContato(contato).subscribe({
+      next: (contatoAtualizado) => {
+        this.favoritos = this.contatos.filter(c => c.favorito);
+      }
+    });
+  }
 }

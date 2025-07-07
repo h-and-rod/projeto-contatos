@@ -24,10 +24,10 @@
                   <td>{{ contato.telefone }}</td>
                   <td>{{ contato.categoria.nome }}</td>
                   <td>
-                    <button class="btn btn-outline-warning btn-sm me-2" title="Remover dos Favoritos">
+                    <button class="btn btn-outline-success btn-sm me-2" title="Editar">
                       <i class="bi bi-star-fill"></i>
                     </button>
-                    <button class="btn btn-outline-danger btn-sm" title="Excluir">
+                    <button class="btn btn-outline-warning btn-sm" title="Remover dos Favoritos" (click)="desfavoritarContato(contato)">
                       <i class="bi bi-trash"></i>
                     </button>
                   </td>
