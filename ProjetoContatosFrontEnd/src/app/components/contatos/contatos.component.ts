@@ -70,6 +70,10 @@ export class ContatosComponent implements OnInit {
 
   abrirPopupEditar(contato: any) {
     this.contatoEditando = { ...contato };
+    if (this.categorias && contato.categoria) {
+      const categoriaEncontrada = this.categorias.find(c => c.id === contato.categoria.id);
+      this.contatoEditando.categoria = categoriaEncontrada || null;
+    }
     this.mostrarModalEditar = true;
   }
 
