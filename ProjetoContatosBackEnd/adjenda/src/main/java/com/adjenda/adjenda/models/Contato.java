@@ -26,7 +26,7 @@ public class Contato {
     private Boolean favorito;
     
 
-    public Contato(int id, String nome, String apelido, String telefone, String email, Categoria categoria, String endereco, String data_de_nascimento, Boolean bloqueado, Boolean favorito) {
+    public Contato(int id, String nome, String apelido, String telefone, String email, Categoria categoria, String endereco, String data_nascimento, Boolean bloqueado, Boolean favorito) {
         this.id = id;
         this.nome = nome;
         this.apelido = apelido;
@@ -34,7 +34,7 @@ public class Contato {
         this.email = email;
         this.categoria = categoria;
         this.endereco = endereco;
-        this.data_nascimento = data_de_nascimento;
+        this.data_nascimento = data_nascimento;
         this.bloqueado = bloqueado;
         this.favorito = favorito;
     }
@@ -86,11 +86,11 @@ public class Contato {
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
-    public String getData_de_nascimento() {
+    public String getData_nascimento() {
         return data_nascimento;
     }
-    public void setData_de_nascimento(String data_de_nascimento) {
-        this.data_nascimento = data_de_nascimento;
+    public void setData_nascimento(String data_nascimento) {
+        this.data_nascimento = data_nascimento;
     }
     public Boolean getBloqueado() {
         return bloqueado;

@@ -69,7 +69,7 @@ public class ContatoController {
                 contato.setEmail(contatoAtualizado.getEmail());
                 contato.setCategoria(contatoAtualizado.getCategoria());
                 contato.setEndereco(contatoAtualizado.getEndereco());
-                contato.setData_de_nascimento(contatoAtualizado.getData_de_nascimento());
+                contato.setData_nascimento(contatoAtualizado.getData_nascimento());
                 contato.setBloqueado(contatoAtualizado.getBloqueado());
                 contato.setFavorito(contatoAtualizado.getFavorito());
                 Contato atualizado = contatoRepository.save(contato);

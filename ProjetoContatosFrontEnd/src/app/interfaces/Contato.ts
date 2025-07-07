@@ -8,7 +8,7 @@ export interface Contato {
     email: string;
     categoria: Categoria;
     endereco: string;
-    data_de_nascimento: string;
+    data_nascimento: string;
     bloqueado: boolean;
     favorito: boolean;
 }
