@@ -6,10 +6,7 @@ import org.springframework.web.server.ResponseStatusException;
 import com.adjenda.adjenda.models.Contato;
 import com.adjenda.adjenda.repositories.ContatoRepository;
 
-import jakarta.annotation.PostConstruct;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
