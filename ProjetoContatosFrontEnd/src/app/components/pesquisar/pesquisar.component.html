@@ -71,12 +71,12 @@
                   <td>{{ contato.telefone }}</td>
                   <td>{{ contato.categoria.nome }}</td>
                   <td>
-                    <span *ngIf="contato.favorito" class="text-success fw-bold">Sim</span>
-                    <span *ngIf="!contato.favorito">Não</span>
+                    <span *ngIf="contato.favorito" class="text-success fw-bold">Favoritado</span>
+                    <span *ngIf="!contato.favorito"></span>
                   </td>
                   <td>
-                    <span *ngIf="contato.bloqueado" class="text-danger fw-bold">Sim</span>
-                    <span *ngIf="!contato.bloqueado">Não</span>
+                    <span *ngIf="contato.bloqueado" class="text-danger fw-bold">Bloqueado</span>
+                    <span *ngIf="!contato.bloqueado"></span>
                   </td>
                   <td>
                     <button class="btn btn-outline-success btn-sm me-2" title="Editar" (click)="abrirPopupEditar(contato)">
