@@ -17,6 +17,9 @@ export class FavoritosComponent {
   contatos: Contato[] = [];
   contato: Contato = {} as Contato;
 
+  mostrarModalEditar: boolean = false;
+  contatoEditando: any = {};
+
   constructor(private categoriaService: CategoriaService, private contatoService: ContatoService) { }
 
   ngOnInit(): void {
@@ -50,6 +53,30 @@ export class FavoritosComponent {
     this.contatoService.updateContato(contato).subscribe({
       next: (contatoAtualizado) => {
         this.favoritos = this.contatos.filter(c => c.favorito);
+      }
+    });
+  }
+
+  abrirPopupEditar(contato: any) {
+    this.contatoEditando = { ...contato };
+    if (this.categorias && contato.categoria) {
+      const categoriaEncontrada = this.categorias.find(c => c.id === contato.categoria.id);
+      this.contatoEditando.categoria = categoriaEncontrada || null;
+    }
+    this.mostrarModalEditar = true;
+  }
+
+  fecharModalEditar() {
+    this.mostrarModalEditar = false;
+  }
+
+  salvarEdicaoContato() {
+    this.contatoService.updateContato(this.contatoEditando).subscribe({
+      next: (contatoAtualizado) => {
+        const idx = this.contatos.findIndex(c => c.id === contatoAtualizado.id);
+        if (idx > -1) this.contatos[idx] = contatoAtualizado;
+        this.favoritos = this.contatos.filter(c => c.favorito);
+        this.fecharModalEditar();
       }
     });
   }

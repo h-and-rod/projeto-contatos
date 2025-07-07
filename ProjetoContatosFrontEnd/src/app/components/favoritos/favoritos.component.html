@@ -24,7 +24,7 @@
                   <td>{{ contato.telefone }}</td>
                   <td>{{ contato.categoria.nome }}</td>
                   <td>
-                    <button class="btn btn-outline-success btn-sm me-2" title="Editar">
+                    <button class="btn btn-outline-success btn-sm me-2" title="Editar" (click)="abrirPopupEditar(contato)">
                       <i class="bi bi-star-fill"></i>
                     </button>
                     <button class="btn btn-outline-warning btn-sm" title="Remover dos Favoritos" (click)="desfavoritarContato(contato)">
@@ -43,3 +43,56 @@
         </div>
       </div>
     </div>
+
+
+
+<div class="custom-modal-backdrop" *ngIf="mostrarModalEditar"></div>
+<div class="custom-modal" *ngIf="mostrarModalEditar">
+  <div class="custom-modal-content">
+    <form (ngSubmit)="salvarEdicaoContato()">
+      <h5>Editar Contato</h5>
+      <div class="mb-3">
+        <label class="form-label">Nome</label>
+        <input type="text" class="form-control" [(ngModel)]="contatoEditando.nome" name="nomeEditar" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Apelido</label>
+        <input type="text" class="form-control" [(ngModel)]="contatoEditando.apelido" name="apelidoEditar">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Telefone</label>
+        <input type="text" class="form-control" [(ngModel)]="contatoEditando.telefone" name="telefoneEditar" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">E-mail</label>
+        <input type="email" class="form-control" [(ngModel)]="contatoEditando.email" name="emailEditar">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Categoria</label>
+        <select class="form-select" [(ngModel)]="contatoEditando.categoria" name="categoriaEditar">
+          <option *ngFor="let c of categorias" [ngValue]="c">{{ c.nome }}</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Endereço</label>
+        <input type="text" class="form-control" [(ngModel)]="contatoEditando.endereco" name="enderecoEditar">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Data de Nascimento</label>
+        <input type="date" class="form-control" [(ngModel)]="contatoEditando.data_nascimento" name="dataNascimentoEditar">
+      </div>
+      <div class="form-check mb-2">
+        <input type="checkbox" class="form-check-input" [(ngModel)]="contatoEditando.bloqueado" name="bloqueadoEditar" id="bloqueadoEditar">
+        <label class="form-check-label" for="bloqueadoEditar">Bloqueado</label>
+      </div>
+      <div class="form-check mb-2">
+        <input type="checkbox" class="form-check-input" [(ngModel)]="contatoEditando.favorito" name="favoritoEditar" id="favoritoEditar">
+        <label class="form-check-label" for="favoritoEditar">Favorito</label>
+      </div>
+      <div class="d-flex justify-content-end gap-2 mt-3">
+        <button type="button" class="btn btn-secondary" (click)="fecharModalEditar()">Cancelar</button>
+        <button type="submit" class="btn btn-success">Salvar</button>
+      </div>
+    </form>
+  </div>
+</div>
