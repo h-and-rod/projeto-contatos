@@ -8,7 +8,7 @@ import { Categoria } from '../interfaces/Categoria';
 })
 export class CategoriaService {
 
-  apiURL = 'http://localhost:8080/categorias';
+  apiURL = 'https://adjenda.duckdns.org/categorias';
 
   constructor(private http: HttpClient) { }
 

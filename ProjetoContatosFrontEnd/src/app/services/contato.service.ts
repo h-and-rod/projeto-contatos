@@ -9,7 +9,7 @@ import { Contato } from '../interfaces/Contato';
 })
 export class ContatoService {
 
-  apiURL = 'http://localhost:8080/contatos';
+  apiURL = 'https://adjenda.duckdns.org/contatos';
 
   pesquisarContatos(filtro: any) {
     throw new Error('Method not implemented.');
