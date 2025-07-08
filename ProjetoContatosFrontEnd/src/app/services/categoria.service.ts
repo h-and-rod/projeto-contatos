@@ -8,10 +8,12 @@ import { Categoria } from '../interfaces/Categoria';
 })
 export class CategoriaService {
 
+  apiURL = 'http://localhost:8080/categorias';
+
   constructor(private http: HttpClient) { }
 
   getCategorias() : Observable<Categoria[]> {
-    return this.http.get<Categoria[]>('http://localhost:8080/categorias');
+    return this.http.get<Categoria[]>(this.apiURL);
   }
 
 }

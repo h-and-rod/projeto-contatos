@@ -15,7 +15,6 @@ export class FavoritosComponent {
   
   categorias: Categoria [] = [];
   contatos: Contato[] = [];
-  contato: Contato = {} as Contato;
 
   mostrarModalEditar: boolean = false;
   contatoEditando: any = {};

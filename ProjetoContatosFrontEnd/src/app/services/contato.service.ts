@@ -8,6 +8,9 @@ import { Contato } from '../interfaces/Contato';
   providedIn: 'root'
 })
 export class ContatoService {
+
+  apiURL = 'http://localhost:8080/contatos';
+
   pesquisarContatos(filtro: any) {
     throw new Error('Method not implemented.');
   }
@@ -15,18 +18,18 @@ export class ContatoService {
   constructor(private http: HttpClient) { }
 
   getContatos(): Observable<Contato[]> {
-    return this.http.get<Contato[]>('http://localhost:8080/contatos');
+    return this.http.get<Contato[]>(this.apiURL);
   }
   
   saveContato(contato: Contato){
-    return this.http.post<Contato>('http://localhost:8080/contatos', contato);
+    return this.http.post<Contato>(this.apiURL, contato);
   }
 
   deleteContato(id: number) {
-  return this.http.delete(`http://localhost:8080/contatos/${id}`);
+    return this.http.delete(`${this.apiURL}/${id}`);
   }
 
   updateContato(contato: Contato) {
-    return this.http.put<Contato>(`http://localhost:8080/contatos/${contato.id}`, contato);
+    return this.http.put<Contato>(`${this.apiURL}/${contato.id}`, contato);
   }
 }
